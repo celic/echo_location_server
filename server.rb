@@ -1,4 +1,5 @@
 # Establish dependencies
+require 'yaml'
 
 # Gather input
 
@@ -8,13 +9,8 @@
 
 # Use GoogleMaps API to find all other points in DB, within radius from given point
 
-ActiveRecord::Base.establish_connection(
-	adapter: 'postgresql',
-	host: 'localhost',
-	database: 'points',
-	user: 'chris',
-	password: 'chris'
-)
+dbconfig = YAML::load(File.open('db/database.yml'))
+ActiveRecord::Base.establish_connection(dbconfig)
 
 # Create point
 point = Point.create(lat: -40, lon: 120)
