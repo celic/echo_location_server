@@ -1,5 +1,0 @@
-adapter: postgresql
-database: points
-username: postgres
-password: admin
-host: localhost
