@@ -1,0 +1,5 @@
+adapter: postgresql
+database: points
+username: username
+password: password
+host: localhost
