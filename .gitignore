@@ -1,2 +1,4 @@
 /db/database.yml
 database.log
+points
+points.db
