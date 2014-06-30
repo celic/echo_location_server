@@ -1,2 +1,5 @@
 D, [2014-06-29T20:43:39.784539 #11816] DEBUG -- :   [1m[36m (19.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
 D, [2014-06-29T20:43:39.895468 #11816] DEBUG -- :   [1m[35m (109.6ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+D, [2014-06-29T20:57:15.040921 #12827] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+D, [2014-06-29T20:57:19.278474 #12832] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+D, [2014-06-29T20:57:19.280230 #12832] DEBUG -- :   [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
