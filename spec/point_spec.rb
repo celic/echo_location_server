@@ -1,10 +1,8 @@
-require_relative '../point'
-require_relative '../server'
+require "spec_helper"
 
 describe Point do
 
 	before do
-
 
 	end
 	
