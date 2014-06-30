@@ -1,5 +1,2 @@
-adapter: postgresql
+adapter: sqlite3
 database: points
-username: username
-password: password
-host: localhost
