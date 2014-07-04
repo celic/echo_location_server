@@ -18,7 +18,7 @@ describe Point do
 
 	context "with positive numbers" do
 		it "should reject large latitude" do
-			Point.create(lat: 91, lon: 0).should be_false
+			p = Point.create(lat: 91, lon: 0).should be_false
 		end
 
 		it "should reject large longitude" do
