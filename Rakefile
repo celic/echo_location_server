@@ -9,6 +9,7 @@ task :migrate => :environment do
 end
  
 task :environment do
-  ActiveRecord::Base.establish_connection(YAML::load(File.open('db/database.yml')))
+  ActiveRecord::Base.establish_connection(YAML::load(File.open('db/test-database.yml')))
+  ActiveRecord::Base.establish_connection(YAML::load(File.open('db/development-database.yml')))
   ActiveRecord::Base.logger = Logger.new(File.open('database.log', 'a'))
 end

@@ -6,7 +6,7 @@
 
 # Use GoogleMaps API to find all other points in DB, within radius from given point
 
-dbconfig = YAML::load(File.open('../db/database.yml'))
+dbconfig = YAML::load(File.open('../db/development-database.yml'))
 ActiveRecord::Base.establish_connection(dbconfig)
 
 # Create point

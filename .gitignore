@@ -1,4 +1,4 @@
-/db/database.yml
+/db/development-database.yml
 database.log
 points
 points.db
