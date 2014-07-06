@@ -1,6 +1,7 @@
 require 'yaml'
 require 'active_record'
 require 'socket'
+require 'json'
 require_relative 'lib/server'
 require_relative 'lib/point'
 
@@ -8,7 +9,7 @@ require_relative 'lib/point'
 initialize_database
 
 # Test database connection
-test
+# test
 
 # Bind TCP Server to port 80
 establish_connection 8000
