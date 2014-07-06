@@ -8,6 +8,16 @@ The server uses Postgres for its database. It expects a database 'points' to exi
 
 If you want to use Rspec you will have to set up the testing database, 'points_test' again with a table 'points'.
 
+The databases are simple, run the following commands to create one and a table inside:
+
+```
+psql postgres
+CREATE DATABASE points;
+\q
+psql points
+CREATE TABLE points(id BIGSERIAL, lat DECIMAL, lon DECIMAL);
+```
+
 Run
 ---
 
