@@ -10,6 +10,10 @@ describe Point do
 		it "should accept negative numbers" do
 			expect(Point.new(lat: -90, lon: -180).save).to be true
 		end
+
+		it "should accept decimals" do
+			expect(Point.new(lat: 12.345, lon: 43.2198).save).to be true
+		end
 	end
 
 	context "with positive numbers" do
