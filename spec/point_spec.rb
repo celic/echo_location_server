@@ -3,6 +3,7 @@ require "spec_helper"
 describe Point do
 	
 	context "with normal input" do
+
 		it "should accept positive numbers" do
 			expect(Point.new(lat: 90, lon: 180).save).to be true
 		end
@@ -14,9 +15,24 @@ describe Point do
 		it "should accept decimals" do
 			expect(Point.new(lat: 12.345, lon: 43.2198).save).to be true
 		end
+
+		context "individual values" do
+			before do
+				@p = Point.create(lat: 12.345, lon: 67.89)
+			end
+
+			it "should match latitude" do
+				expect(@p.lat).to eq(12.345)
+			end
+
+			it "should match longitude" do
+				expect(@p.lon).to eq(67.89)
+			end
+		end
 	end
 
 	context "with positive numbers" do
+		
 		it "should reject large latitude" do
 			expect(Point.new(lat: 91, lon: 0).save).to be false
 		end
@@ -31,6 +47,7 @@ describe Point do
 	end
 
 	context "with negative numbers" do
+		
 		it "should reject small latitude" do
 			expect(Point.new(lat: -91, lon: 0).save).to be false
 		end
