@@ -16,23 +16,21 @@ def establish_connection(port)
 	loop do
 		Thread.start(server.accept) do |client|
 			
-			puts 'NEW CLIENT!'
-
 			# Parse JSON
 			input = JSON.parse(client.gets)
 
-			puts 'JSON RECEIVED AND PARSED'
-
-			@p = ''
-
 			# Process state of user
-			if input[:state] == "D"
-				# Save point in database
-				@p = Point.create(input[:point][:lat], input[:point][:lon])
+			if input["state"].eql? 'D'
 
-			elsif input[:state] == "S"
-				# Declare the point, but don't save it in the databse
-				@p = Point.new(input[:point][:lat], input[:point][:lon])
+				# Save point in database
+				@p = Point.create(lat: input["point"]["lat"], lon: input["point"]["lon"])
+				puts 'Point added to database'
+
+			elsif input["state"].eql? 'S'
+
+				# Declare the point, but don't save it in the database
+				@p = Point.new(lat: input["point"]["lat"], lon: input["point"]["lon"])
+				puts 'Point not added to database'
 			end
 
 			puts @p.lat
