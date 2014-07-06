@@ -1,6 +1,4 @@
 # Gather input
-require 'yaml'
-require 'active_record'
 
 # Get: Location (two ints), S/D (boolean), radius (int)
 
@@ -8,10 +6,16 @@ require 'active_record'
 
 # Use haversine to find all other points in DB, within radius from given point
 
-dbconfig = YAML::load(File.open('db/development-database.yml'))
-ActiveRecord::Base.establish_connection(dbconfig)
+def initialize_database
 
-# Create point
-@point = Point.create(lat: -40, lon: 120)
 
-puts @point.lat
+	dbconfig = YAML::load(File.open('db/development-database.yml'))
+	ActiveRecord::Base.establish_connection(dbconfig)
+end
+
+def test
+	# Create point
+	@point = Point.create(lat: -40, lon: 120)
+
+	puts @point.lat
+end

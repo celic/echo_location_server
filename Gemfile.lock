@@ -17,6 +17,7 @@ GEM
     arel (5.0.1.20140414130214)
     builder (3.2.2)
     diff-lcs (1.2.5)
+    haversine (0.3.0)
     i18n (0.6.9)
     json (1.8.1)
     minitest (5.3.5)
@@ -42,5 +43,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 4.1.1)
+  haversine
   pg
   rspec
