@@ -2,6 +2,7 @@ require 'yaml'
 require 'active_record'
 require 'socket'
 require 'json'
+require 'rest-client'
 require_relative 'lib/server'
 require_relative 'lib/point'
 

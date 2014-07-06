@@ -19,6 +19,12 @@ rake
 ruby run_server.rb
 ```
 
+From another window run:
+
+```
+curl -D- -X POST -H "Content-Type: application/json" --data @test.json localhost:8000
+```
+
 Shoutouts
 ---------
 

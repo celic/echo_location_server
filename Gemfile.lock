@@ -20,8 +20,11 @@ GEM
     haversine (0.3.0)
     i18n (0.6.9)
     json (1.8.1)
+    mime-types (2.3)
     minitest (5.3.5)
     pg (0.17.1)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -45,4 +48,5 @@ DEPENDENCIES
   activerecord (~> 4.1.1)
   haversine
   pg
+  rest-client
   rspec
