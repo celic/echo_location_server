@@ -15,9 +15,13 @@ To run, first make sure you run:
 
 <code>
 bundle install
+</code>
 
+<code>
 rake
+</code>
 
+<code>
 ruby run_server.rb
 </code>
 
