@@ -13,9 +13,11 @@ Run
 
 To run, first make sure you run:
 
+<code>
 bundle install
 rake
 ruby run_server.rb
+</code>
 
 Shoutouts
 ---------
