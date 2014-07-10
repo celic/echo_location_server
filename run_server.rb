@@ -5,13 +5,16 @@ require 'json'
 require_relative 'lib/server'
 require_relative 'lib/point'
 
+# Declare Server
+server = Server.new(8000)
+
 # Establish connection with database
-initialize_database
+puts "Database initialized." if server.initialize_database
 
 # Test database connection
-# test
+puts "Database connection tested." if server.test
 
-# Bind TCP Server to port 80
-establish_connection 8000
+# Bind TCP Server to port 8000
+server.establish_connection
 
 # From here all logic is passed to lib/server.rb

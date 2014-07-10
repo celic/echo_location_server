@@ -1,49 +1,78 @@
-# Gather input
+class Server
 
-# Get: Location (two ints), S/D (boolean), radius (int)
+	def initialize(port)
+		@port = port
+	end
 
-# If D, store in database
+	def initialize_database
+		dbconfig = YAML::load(File.open('db/development-database.yml'))
+		ActiveRecord::Base.establish_connection(dbconfig)
+		return true
+	end
 
-# Use haversine to find all other points in DB, within radius from given point
+	def establish_connection
+		server = TCPServer.new @port
+		loop do
 
-def initialize_database
-	dbconfig = YAML::load(File.open('db/development-database.yml'))
-	ActiveRecord::Base.establish_connection(dbconfig)
-end
+			puts "Server listening on port #{@port}."
 
-def establish_connection(port)
-	server = TCPServer.new port
-	loop do
-		Thread.start(server.accept) do |client|
-			
-			# Parse JSON
-			input = JSON.parse(client.gets)
+			Thread.start(server.accept) do |client|
+				
 
-			# Process state of user
-			if input["state"].eql? 'D'
 
-				# Save point in database
-				@p = Point.create(lat: input["point"]["lat"], lon: input["point"]["lon"])
-				puts 'Point added to database'
+				if not parse_input(client.gets)
+					puts "ERROR -- Invalid State"
+					client.puts "ERROR -- Invalid State"
+					client.close
+				end
 
-			elsif input["state"].eql? 'S'
+				puts @p.lat
+				puts @p.lon
 
-				# Declare the point, but don't save it in the database
-				@p = Point.new(lat: input["point"]["lat"], lon: input["point"]["lon"])
-				puts 'Point not added to database'
+				client.close
 			end
-
-			puts @p.lat
-			puts @p.lon
-
-			client.close
 		end
 	end
-end
 
-def test
-	# Create point
-	@point = Point.create(lat: -40, lon: 120)
+	def parse_input(input)
+		# Parse JSON
+		json_input = JSON.parse(input)
 
-	puts @point.lat
+		# Process state of user
+		if json_input["state"].eql? 'D'
+
+			# Save point in database
+			@p = Point.create(lat: json_input["point"]["lat"], lon: json_input["point"]["lon"])
+			puts 'Point added to database'
+
+		elsif json_input["state"].eql? 'S'
+
+			# Declare the point, but don't save it in the database
+			@p = Point.new(lat: json_input["point"]["lat"], lon: json_input["point"]["lon"])
+			puts 'Point not added to database'
+		else
+			return false
+		end
+
+		return (not @p.nil?)
+	end
+
+	def search_points
+
+	end
+
+	def haversine
+
+	end
+
+	def test
+		# Create point
+		@point = Point.create(lat: -40, lon: 120)
+
+		# Test output
+		puts "Lat: #{@point.lat}"
+		puts "Lon: #{@point.lon}"
+
+		return true
+	end
 end
