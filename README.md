@@ -32,10 +32,18 @@ ruby run_server.rb
 From another window run:
 
 ```
-telnet localhost 8000 < test.json
+telnet localhost 8000 < test-template.json
 ```
+
+You can modify the template as needed, but telnet likes it to fit in one line. It is JSON and shouldn't really be that long for this particular server...
 
 Shoutouts
 ---------
 
-Andrew: For being the sassiest prick you've ever met when helping me set up the databases.
+Andrew: For being the sassiest prick you've ever met when helping me set up the databases. Also, when you ninja-edit this, tell me to at least pull before I get worried when I see a merge appear on a one person project.
+
+
+Contributions
+-------------
+
+If for some unknown reason you feel compelled to contribute to this project, please do so in the form of a pull request.
