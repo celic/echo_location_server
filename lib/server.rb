@@ -27,6 +27,8 @@ class Server
 				puts @p.lat
 				puts @p.lon
 
+				puts haversine(@p, @distance)
+
 				client.close
 			end
 		end
@@ -102,8 +104,23 @@ class Server
 
 	end
 
-	def haversine
+	def haversine(point, distance)
+		list = Array.new
 
+		Point.all.each do |p|
+			if not p.id == point.id
+				dist = Haversine.distance(point.location, p.location)
+				list << p if dist.to_mi <= distance
+			end
+		end
+
+		json = "{ points: [ "
+		list.each do |p|
+			json += p.to_json
+		end
+		json += " ] }"
+
+		return json
 	end
 
 	def test
