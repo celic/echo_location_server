@@ -18,8 +18,6 @@ class Server
 
 			Thread.start(server.accept) do |client|
 				
-
-
 				if not parse_input(client.gets)
 					puts "ERROR -- Invalid State"
 					client.puts "ERROR -- Invalid State"
@@ -38,23 +36,66 @@ class Server
 		# Parse JSON
 		json_input = JSON.parse(input)
 
+		# Lots of error checking =====================================
+
+		# Check for the three expected keys
+		keys = json_input.keys
+		if keys.include?("point") and keys.include?("state") and keys.include?("distance")
+
+			# Check for the two keys inside of point
+			point_keys = json_input["point"].keys
+			if point_keys.include?("lat") and point_keys.include?("lon")
+			else
+				# Return false if lat and lon are not present
+				return false
+			end
+		else
+			# Return false if point, state and distance are not present
+			return false
+		end
+
+		# Make sure there are only 3 keys
+		return false unless keys.count.eql? 3
+
+		@lat = json_input["point"]["lat"]
+		@lon = json_input["point"]["lon"]
+		@state = json_input["state"]
+		@distance = json_input["distance"]
+
+		# Make sure latitude is valid
+		return false unless @lat.is_a? Numeric
+		return false unless @lat >= -90 and @lat <= 90
+
+		# Make sure longitude is valid
+		return false unless @lon.is_a? Numeric
+		return false unless @lon >= -180 and @lon <= 180
+
+		# Make sure the state is valid
+		return false unless @state.eql? 'S' or @state.eql? 'D'
+
+		# Make sure the distance is valid
+		return false unless @distance.is_a? Numeric
+		return false unless @distance > 0 and @distance < 50
+
+		# Done error checking ========================================
+
 		# Process state of user
-		if json_input["state"].eql? 'D'
+		if @state.eql? 'D'
 
 			# Save point in database
-			@p = Point.create(lat: json_input["point"]["lat"], lon: json_input["point"]["lon"])
-			puts 'Point added to database'
+			@p = Point.create(lat: @lat, lon: @lon)
 
-		elsif json_input["state"].eql? 'S'
+		elsif @state.eql? 'S'
 
 			# Declare the point, but don't save it in the database
-			@p = Point.new(lat: json_input["point"]["lat"], lon: json_input["point"]["lon"])
-			puts 'Point not added to database'
+			@p = Point.new(lat: @lat, lon: @lon)
+
 		else
 			return false
 		end
 
-		return (not @p.nil?)
+		# Everything checks out
+		return true
 	end
 
 	def search_points
@@ -70,8 +111,8 @@ class Server
 		@point = Point.create(lat: -40, lon: 120)
 
 		# Test output
-		puts "Lat: #{@point.lat}"
-		puts "Lon: #{@point.lon}"
+		# puts "Lat: #{@point.lat}"
+		# puts "Lon: #{@point.lon}"
 
 		return (not @point.nil?)
 	end
