@@ -73,6 +73,6 @@ class Server
 		puts "Lat: #{@point.lat}"
 		puts "Lon: #{@point.lon}"
 
-		return true
+		return (not @point.nil?)
 	end
 end
