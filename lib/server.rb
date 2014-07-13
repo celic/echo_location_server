@@ -17,6 +17,8 @@ class Server
 			puts "Server listening on port #{@port}."
 
 			Thread.start(server.accept) do |client|
+
+				puts "Client connected"
 				
 				if not parse_input(client.gets)
 					puts "ERROR -- Invalid State"
@@ -24,6 +26,9 @@ class Server
 					client.close
 				end
 
+				puts "JSON parsed"
+
+				puts "Recieved point: "
 				puts @p.lat
 				puts @p.lon
 
