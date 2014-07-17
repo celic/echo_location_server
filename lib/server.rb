@@ -22,7 +22,6 @@ class Server
 				
 				if not parse_input(client.gets)
 					puts "ERROR -- Invalid State"
-					client.puts "ERROR -- Invalid State"
 					client.close
 				end
 
@@ -32,7 +31,7 @@ class Server
 				puts @p.lat
 				puts @p.lon
 
-				puts haversine @p, @distance
+				client.puts(haversine(@p, @distance))
 
 				client.close
 			end
@@ -108,13 +107,11 @@ class Server
 	def haversine(point, distance)
 		list = Array.new
 
-		puts "Calculate distance for point: "
-		puts point.to_json
+		puts "Calculate distance for point: #{point.to_json}"
 
 		Point.all.each do |p|
 			if not p.id == point.id
 				dist = Haversine.distance(point.location, p.location)
-				puts "Distance calculated"
 				list << p if dist.to_mi <= distance
 			end
 		end

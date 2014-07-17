@@ -32,8 +32,10 @@ ruby run_server.rb
 From another window run:
 
 ```
-telnet localhost 8000 < test-template.json
+telnet localhost 8000
 ```
+
+Then as you can't pipe the test file into the open connection without it closing immediately after, you have to paste in the content of test-template.json or quickly write your own.
 
 You can modify the template as needed, but telnet likes it to fit in one line. It is JSON and shouldn't really be that long for this particular server...
 
