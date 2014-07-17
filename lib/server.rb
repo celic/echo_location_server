@@ -105,10 +105,6 @@ class Server
 		return true
 	end
 
-	def search_points
-
-	end
-
 	def haversine(point, distance)
 		list = Array.new
 

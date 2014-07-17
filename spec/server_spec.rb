@@ -119,10 +119,6 @@ describe Server do
 		end
 	end
 
-	context "the search_points method" do
-
-	end
-
 	context "the haversine method" do
 
 

@@ -37,6 +37,17 @@ telnet localhost 8000 < test-template.json
 
 You can modify the template as needed, but telnet likes it to fit in one line. It is JSON and shouldn't really be that long for this particular server...
 
+Testing
+-------
+
+From parent directory: 
+
+```
+rspec
+```
+
+It's like magic or something.
+
 Shoutouts
 ---------
 
